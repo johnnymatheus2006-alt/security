@@ -171,10 +171,18 @@ checkbox.addEventListener('change', () => {
 
 button.addEventListener('click', () => {
 
-    window.location.href = "https://t.me/camiisnoronha_bot?start=unlockvip01";
+    button.innerText = "Verificando...";
+    button.disabled = true;
+
+    // gera delay aleatório entre 500ms e 1500ms
+    const delay = Math.floor(Math.random() * 1000) + 500;
+
+    setTimeout(() => {
+        window.location.href = "https://t.me/camiisnoronha_bot?start=unlockvip01";
+    }, delay);
 
 });
-
+    
 button.disabled = true;
 
 </script>
