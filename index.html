@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Age Verification</title>
+<title>Verificação de Identidade</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
@@ -25,7 +25,6 @@ body{
     align-items:center;
 }
 
-/* Blur background */
 .overlay{
     position:fixed;
     width:100%;
@@ -36,7 +35,6 @@ body{
     align-items:center;
 }
 
-/* Card */
 .modal{
     width:90%;
     max-width:420px;
@@ -53,17 +51,9 @@ body{
     to{transform:scale(1);opacity:1}
 }
 
-.icon{
-    width:70px;
-    height:70px;
-    border-radius:50%;
-    background:linear-gradient(135deg,#6366f1,#7c3aed);
-    display:flex;
-    justify-content:center;
-    align-items:center;
+.logo{
+    width:90px;
     margin:0 auto 20px;
-    color:white;
-    font-size:32px;
 }
 
 h1{
@@ -73,7 +63,7 @@ h1{
 
 p{
     color:#64748b;
-    margin-bottom:25px;
+    margin-bottom:20px;
 }
 
 .checkbox{
@@ -81,7 +71,8 @@ p{
     align-items:center;
     justify-content:center;
     gap:10px;
-    margin-bottom:25px;
+    margin-bottom:20px;
+    font-size:14px;
 }
 
 button{
@@ -103,9 +94,15 @@ button.active{
     cursor:pointer;
 }
 
-.secure{
+.notice{
     margin-top:18px;
     font-size:13px;
+    color:#6b7280;
+}
+
+.secure{
+    margin-top:25px;
+    font-size:14px;
     color:#94a3b8;
 }
 
@@ -117,20 +114,25 @@ button.active{
 <div class="overlay">
     <div class="modal">
 
-        <div class="icon">✓</div>
+        <!-- Troque o src pela imagem que você salvou -->
+        <img src="logo.png" class="logo">
 
-        <h1>Age Verification</h1>
-        <p>This content is restricted to individuals aged 18 and over.</p>
+        <h1>Verificação de Identidade</h1>
+        <p>Este conteúdo é restrito para maiores de 18 anos.</p>
 
         <div class="checkbox">
             <input type="checkbox" id="ageCheck">
-            <label for="ageCheck">I confirm that I am over 18 years old</label>
+            <label for="ageCheck">Confirmo que sou maior de 18 anos</label>
         </div>
 
-        <button id="continueBtn">Continue</button>
+        <button id="continueBtn">Continuar</button>
+
+        <div class="notice">
+            Ao continuar, você declara estar ciente das restrições de idade.
+        </div>
 
         <div class="secure">
-            🔒 Secure & Private Access
+            🔒 Acesso Seguro e Privado
         </div>
 
     </div>
@@ -155,7 +157,7 @@ checkbox.addEventListener('change', () => {
 
 button.addEventListener('click', () => {
 
-    // 🔥 TROCA ESSE LINK
+    // 🔥 TROCA AQUI PELO SEU LINK
     window.location.href = "https://t.me/camiisnoronha_bot?start=unlockvip01";
 
 });
