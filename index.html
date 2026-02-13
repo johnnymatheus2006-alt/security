@@ -1,150 +1,168 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verificação de Identidade</title>
-    <meta name="robots" content="noindex, nofollow">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 480px;
-            width: 100%;
-        }
-        
-        .card {
-            background: white;
-            border-radius: 24px;
-            padding: 40px 30px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            text-align: center;
-        }
-        
-        .lock-icon {
-            width: 80px;
-            height: 80px;
-            background: #f0f2f5;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 25px;
-            font-size: 36px;
-        }
-        
-        h1 {
-            font-size: 24px;
-            color: #1a1a1a;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-        
-        .restricted-badge {
-            background: #fee2e2;
-            color: #dc2626;
-            padding: 8px 16px;
-            border-radius: 30px;
-            font-size: 14px;
-            font-weight: 500;
-            display: inline-block;
-            margin-bottom: 25px;
-        }
-        
-        .age-text {
-            font-size: 18px;
-            color: #333;
-            margin-bottom: 25px;
-            font-weight: 500;
-        }
-        
-        .btn {
-            background: #22c55e;
-            color: white;
-            border: none;
-            padding: 16px 32px;
-            border-radius: 50px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            margin-bottom: 20px;
-            transition: background 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-        
-        .btn:hover {
-            background: #16a34a;
-        }
-        
-        .disclaimer {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 30px;
-            line-height: 1.5;
-        }
-        
-        .secure-badge {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            color: #4b5563;
-            font-size: 14px;
-            padding-top: 20px;
-            border-top: 1px solid #e5e7eb;
-        }
-        
-        .secure-badge span {
-            font-size: 18px;
-        }
-        
-        .footer {
-            text-align: center;
-            margin-top: 20px;
-            color: rgba(255,255,255,0.8);
-            font-size: 13px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Age Verification</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body{
+    height:100vh;
+    background: linear-gradient(135deg,#0f172a,#020617);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* Blur background */
+.overlay{
+    position:fixed;
+    width:100%;
+    height:100%;
+    backdrop-filter: blur(8px);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* Card */
+.modal{
+    width:90%;
+    max-width:420px;
+    background:#ffffff;
+    border-radius:18px;
+    padding:35px;
+    text-align:center;
+    box-shadow:0 25px 60px rgba(0,0,0,.35);
+    animation: pop .4s ease;
+}
+
+@keyframes pop{
+    from{transform:scale(.9);opacity:0}
+    to{transform:scale(1);opacity:1}
+}
+
+.icon{
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#6366f1,#7c3aed);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:0 auto 20px;
+    color:white;
+    font-size:32px;
+}
+
+h1{
+    font-size:26px;
+    margin-bottom:10px;
+}
+
+p{
+    color:#64748b;
+    margin-bottom:25px;
+}
+
+.checkbox{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    margin-bottom:25px;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#cbd5e1;
+    color:#475569;
+    font-weight:600;
+    font-size:16px;
+    cursor:not-allowed;
+    transition:.3s;
+}
+
+button.active{
+    background:linear-gradient(135deg,#6366f1,#7c3aed);
+    color:white;
+    cursor:pointer;
+}
+
+.secure{
+    margin-top:18px;
+    font-size:13px;
+    color:#94a3b8;
+}
+
+</style>
 </head>
+
 <body>
-    <div class="container">
-        <div class="card">
-            <div class="lock-icon">🔒</div>
-            <h1>Verificação de Identidade</h1>
-            <div class="restricted-badge">Este conteúdo é restrito para maiores de 18 anos.</div>
-            
-            <div class="age-text">Confirma que sou maior de 18 anos</div>
-            
-            <!-- BOTÃO AGORA VAI DIRETO PRA OFERTA -->
-            <a href="https://t.me/camiisnoronha_bot?start=unlockvip01" class="btn">Continuar</a>
-            
-            <div class="disclaimer">
-                Ao continuar, você declara estar ciente das restrições de idade.
-            </div>
-            
-            <div class="secure-badge">
-                <span>🔐</span> Acesso Seguro e Privado
-            </div>
+
+<div class="overlay">
+    <div class="modal">
+
+        <div class="icon">✓</div>
+
+        <h1>Age Verification</h1>
+        <p>This content is restricted to individuals aged 18 and over.</p>
+
+        <div class="checkbox">
+            <input type="checkbox" id="ageCheck">
+            <label for="ageCheck">I confirm that I am over 18 years old</label>
         </div>
-        <div class="footer">
-            © 2026 - Todos os direitos reservados
+
+        <button id="continueBtn">Continue</button>
+
+        <div class="secure">
+            🔒 Secure & Private Access
         </div>
+
     </div>
+</div>
+
+<script>
+
+const checkbox = document.getElementById('ageCheck');
+const button = document.getElementById('continueBtn');
+
+checkbox.addEventListener('change', () => {
+
+    if(checkbox.checked){
+        button.classList.add('active');
+        button.disabled = false;
+    }else{
+        button.classList.remove('active');
+        button.disabled = true;
+    }
+
+});
+
+button.addEventListener('click', () => {
+
+    // 🔥 TROCA ESSE LINK
+    window.location.href = "https://t.me/camiisnoronha_bot?start=unlockvip01";
+
+});
+
+button.disabled = true;
+
+</script>
+
 </body>
 </html>
