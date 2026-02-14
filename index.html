@@ -14,7 +14,7 @@ var e=ttq._i[t][],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n])
 
 
   ttq.load('D689IO3C77U1GPVV3C90');
-  ttq.track('ViewContent') , { content_id: "vip_access" });
+  setTimeout(()=>ttq.track("ViewContent",{content_id:"vip_access"}),300);
 }(window, document, 'ttq');
 </script>
   
@@ -192,7 +192,7 @@ document.addEventListener("DOMContentLoaded", function() {
       
         const delay = Math.floor(Math.random() * 1000) + 500;
 
-        ttq.track("ClickCTA", { content_id: "vip_access" });
+        ttq.track("ClickCTA",{ content_id: "vip_access" });
 
         setTimeout(function() {
             window.location.href = "/area-restrita";
