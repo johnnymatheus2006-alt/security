@@ -3,20 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Verificação de Identidade</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
 <style>
-
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
     font-family: 'Inter', sans-serif;
 }
-
 body{
     height:100vh;
     background: linear-gradient(135deg,#0f172a,#020617);
@@ -24,7 +19,6 @@ body{
     justify-content:center;
     align-items:center;
 }
-
 .overlay{
     position:fixed;
     width:100%;
@@ -34,7 +28,6 @@ body{
     justify-content:center;
     align-items:center;
 }
-
 .modal{
     width:90%;
     max-width:420px;
@@ -45,27 +38,22 @@ body{
     box-shadow:0 25px 60px rgba(0,0,0,.35);
     animation: pop .4s ease;
 }
-
 @keyframes pop{
     from{transform:scale(.9);opacity:0}
     to{transform:scale(1);opacity:1}
 }
-
 .logo{
     width:90px;
     margin:0 auto 20px;
 }
-
 h1{
     font-size:26px;
     margin-bottom:10px;
 }
-
 p{
     color:#64748b;
     margin-bottom:20px;
 }
-
 .checkbox{
     display:flex;
     align-items:center;
@@ -74,7 +62,6 @@ p{
     margin-bottom:20px;
     font-size:14px;
 }
-
 button{
     width:100%;
     padding:14px;
@@ -87,33 +74,41 @@ button{
     cursor:not-allowed;
     transition:.3s;
 }
-
 button.active{
     background:linear-gradient(135deg,#6366f1,#7c3aed);
     color:white;
     cursor:pointer;
 }
-
 .notice{
     margin-top:18px;
     font-size:13px;
     color:#6b7280;
 }
-
 .secure{
     margin-top:25px;
     font-size:14px;
     color:#94a3b8;
 }
-
 </style>
+
+<!-- PIXEL TikTok -->
+<script>
+!function (w, d, t) {
+  w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];
+  ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"];
+  ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};
+  for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);
+  ttq.instance=function(t){for(var e=ttq._i[t][],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e};
+  ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i{};ttq._t[e]=+new Date;ttq._o=ttq._o{};n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src=r+"?sdkid="+e+"&lib="+t;var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(n,s)};
+  ttq.load('D689IO3C77U1GPVV3C90'); // SEU ID DO PIXEL
+  ttq.page(); // PAGEVIEW dispara assim que carrega
+}(window, document, 'ttq');
+</script>
+
 </head>
-
 <body>
-
 <div class="overlay">
     <div class="modal">
-
         <div class="logo">
             <svg viewBox="0 0 100 100">
                 <defs>
@@ -139,28 +134,23 @@ button.active{
         </div>
 
         <button id="continueBtn" disabled>Continuar</button>
-
-        <div class="notice">
+<div class="notice">
             Ao continuar, você declara estar ciente das restrições de idade.
         </div>
 
         <div class="secure">
             🔒 Acesso Seguro e Privado
         </div>
-
     </div>
 </div>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-
     const checkbox = document.getElementById('ageCheck');
     const button = document.getElementById('continueBtn');
-
     button.disabled = true;
 
     checkbox.addEventListener('change', function() {
-
         if (this.checked) {
             button.classList.add('active');
             button.disabled = false;
@@ -168,26 +158,23 @@ document.addEventListener("DOMContentLoaded", function() {
             button.classList.remove('active');
             button.disabled = true;
         }
-
     });
 
     button.addEventListener('click', function() {
-
         if (!checkbox.checked) return;
+
+        // CLICK CTA do TikTok
+        ttq.track('ClickCTA');
 
         button.innerText = "Verificando...";
         button.disabled = true;
 
         const delay = Math.floor(Math.random() * 1000) + 500;
-
         setTimeout(function() {
             window.location.href = "/area-restrita";
         }, delay);
-
     });
-
 });
 </script>
-
 </body>
 </html>
