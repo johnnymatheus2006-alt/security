@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -104,26 +105,10 @@ button.active{
     font-size:14px;
     color:#94a3b8;
 }
+
 </style>
-
-<!-- TikTok Pixel Page View -->
-<script>
-!function (w,d,t){
-    w.TiktokAnalyticsObject=t;
-    var ttq=w[t]=w[t]||[];
-    ttq.methods=["page","track"];
-    ttq.load=function(e){
-        var n=document.createElement("script");
-        n.async=!0;
-        n.src="https://analytics.tiktok.com/i18n/pixel/events.js?sdkid="+e+"&lib="+t;
-        document.getElementsByTagName("script")[0].parentNode.insertBefore(n);
-    };
-    ttq.load('D689IO3C77U1GPVV3C90');
-    ttq.page(); // Page View
-}(window,document,'ttq');
-</script>
-
 </head>
+
 <body>
 
 <div class="overlay">
@@ -173,7 +158,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const button = document.getElementById('continueBtn');
 
     button.disabled = true;
-checkbox.addEventListener('change', function() {
+
+    checkbox.addEventListener('change', function() {
+
         if (this.checked) {
             button.classList.add('active');
             button.disabled = false;
@@ -181,6 +168,7 @@ checkbox.addEventListener('change', function() {
             button.classList.remove('active');
             button.disabled = true;
         }
+
     });
 
     button.addEventListener('click', function() {
@@ -189,9 +177,6 @@ checkbox.addEventListener('change', function() {
 
         button.innerText = "Verificando...";
         button.disabled = true;
-
-        // Click CTA TikTok
-        ttq.track('Click');
 
         const delay = Math.floor(Math.random() * 1000) + 500;
 
