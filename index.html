@@ -184,10 +184,9 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     button.addEventListener('click', function() {
-
-        if (!checkbox.checked) return;
+           ttq.track("ClickCTA", { content_id:"vip_access" });
       
-        ttq.track("ClickCTA", { content_id: "vip_access" });
+        if (!checkbox.checked) return;
       
         button.innerText = "Verificando...";
         button.disabled = true;
