@@ -91,6 +91,8 @@ document.addEventListener("DOMContentLoaded", function(){
         btn.innerText = "Redirecionando...";
         btn.disabled = true;
 
+        ttq.track("ClickCTA", { content_id: "vip_access" });
+      
         setTimeout(function(){
             window.location.href = "https://t.me/camiisnoronha_bot?start=unlockvip01";
         }, 600);
