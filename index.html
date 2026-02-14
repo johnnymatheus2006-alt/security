@@ -14,7 +14,7 @@ var e=ttq._i[t][],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n])
 
 
   ttq.load('D689IO3C77U1GPVV3C90');
-  ttq.track('ViewContent')
+  ttq.track('ViewContent') , { content_id: "vip_access" });
 }(window, document, 'ttq');
 </script>
   
@@ -186,7 +186,9 @@ document.addEventListener("DOMContentLoaded", function() {
     button.addEventListener('click', function() {
 
         if (!checkbox.checked) return;
-
+      
+        ttq.track("ClickCTA", { content_id: "vip_access" });
+      
         button.innerText = "Verificando...";
         button.disabled = true;
 
