@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Verificação de Identidade</title>
 
 <!-- Meta Pixel Code -->
@@ -19,123 +18,30 @@
 
 fbq('init', '1303581471201526');
 fbq('track', 'PageView');
-
-// Click no botão VIP
-document.addEventListener("DOMContentLoaded", function(){
-    const btn = document.getElementById("vipBtn");
-    if(btn){
-        btn.addEventListener("click", function(){
-            fbq('track', 'ClickCTA', {content_name: 'Entrar Agora'});
-        });
-    }
-});
 </script>
+
 <noscript>
 <img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=1303581471201526&ev=PageView&noscript=1"/>
 </noscript>
 <!-- End Meta Pixel Code -->
-  
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family: 'Inter', sans-serif;
-}
-
-body{
-    height:100vh;
-    background: linear-gradient(135deg,#0f172a,#020617);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-
-.overlay{
-    position:fixed;
-    width:100%;
-    height:100%;
-    backdrop-filter: blur(8px);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-
-.modal{
-    width:90%;
-    max-width:420px;
-    background:#ffffff;
-    border-radius:18px;
-    padding:35px;
-    text-align:center;
-    box-shadow:0 25px 60px rgba(0,0,0,.35);
-    animation: pop .4s ease;
-}
-
-@keyframes pop{
-    from{transform:scale(.9);opacity:0}
-    to{transform:scale(1);opacity:1}
-}
-
-.logo{
-    width:90px;
-    margin:0 auto 20px;
-}
-
-h1{
-    font-size:26px;
-    margin-bottom:10px;
-}
-
-p{
-    color:#64748b;
-    margin-bottom:20px;
-}
-
-.checkbox{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-    margin-bottom:20px;
-    font-size:14px;
-}
-
-button{
-    width:100%;
-    padding:14px;
-    border:none;
-    border-radius:10px;
-    background:#cbd5e1;
-    color:#475569;
-    font-weight:600;
-    font-size:16px;
-    cursor:not-allowed;
-    transition:.3s;
-}
-
-button.active{
-    background:linear-gradient(135deg,#6366f1,#7c3aed);
-    color:white;
-    cursor:pointer;
-}
-
-.notice{
-    margin-top:18px;
-    font-size:13px;
-    color:#6b7280;
-}
-
-.secure{
-    margin-top:25px;
-    font-size:14px;
-    color:#94a3b8;
-}
-
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+body{height:100vh;background: linear-gradient(135deg,#0f172a,#020617);display:flex;justify-content:center;align-items:center;}
+.overlay{position:fixed;width:100%;height:100%;backdrop-filter: blur(8px);display:flex;justify-content:center;align-items:center;}
+.modal{width:90%;max-width:420px;background:#ffffff;border-radius:18px;padding:35px;text-align:center;box-shadow:0 25px 60px rgba(0,0,0,.35);animation: pop .4s ease;}
+@keyframes pop{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+.logo{width:90px;margin:0 auto 20px;}
+h1{font-size:26px;margin-bottom:10px;}
+p{color:#64748b;margin-bottom:20px;}
+.checkbox{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:20px;font-size:14px;}
+button{width:100%;padding:14px;border:none;border-radius:10px;background:#cbd5e1;color:#475569;font-weight:600;font-size:16px;cursor:not-allowed;transition:.3s;}
+button.active{background:linear-gradient(135deg,#6366f1,#7c3aed);color:white;cursor:pointer;}
+.notice{margin-top:18px;font-size:13px;color:#6b7280;}
+.secure{margin-top:25px;font-size:14px;color:#94a3b8;}
 </style>
 </head>
 
@@ -187,30 +93,30 @@ document.addEventListener("DOMContentLoaded", function() {
     const checkbox = document.getElementById('ageCheck');
     const button = document.getElementById('continueBtn');
 
-    button.disabled = true;
-
+    // Ativa/desativa botão
     checkbox.addEventListener('change', function() {
-
-        if (this.checked) {
+        if(this.checked){
             button.classList.add('active');
             button.disabled = false;
         } else {
             button.classList.remove('active');
             button.disabled = true;
         }
-
     });
-
+// Click do botão
     button.addEventListener('click', function() {
-      
-        if (!checkbox.checked) return;
-      
+
+        if(!checkbox.checked) return;
+
+        // Pixel ClickCTA disparando AGORA
+        fbq('track', 'ClickCTA', {content_name: 'Continuar'});
+
         button.innerText = "Verificando...";
         button.disabled = true;
-      
+
         const delay = Math.floor(Math.random() * 1000) + 500;
 
-        setTimeout(function() {
+        setTimeout(function(){
             window.location.href = "/area-restrita";
         }, delay);
 
